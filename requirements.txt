@@ -1,0 +1,5 @@
+from transformers import pipeline
+from docx import Document
+import pdfplumber
+import logging
+import streamlit as st
