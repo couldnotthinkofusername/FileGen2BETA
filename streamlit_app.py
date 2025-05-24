@@ -1,8 +1,8 @@
-import streamlit as st
 from transformers import pipeline
 from docx import Document
 import pdfplumber
 import logging
+import streamlit as st
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
