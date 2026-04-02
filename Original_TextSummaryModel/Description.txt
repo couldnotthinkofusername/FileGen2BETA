@@ -1,1 +1,2 @@
-
+This was the original design of the Text Summarisation Model created without streamlit integration. 
+Few tweaks were added with Grok model for session logs and Optimization. 
