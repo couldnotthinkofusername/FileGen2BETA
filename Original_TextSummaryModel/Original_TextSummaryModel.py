@@ -17,7 +17,6 @@ class TextExtraction:
             doc = docx.Document(file_path)
             text = [para.text.strip() for para in doc.paragraphs if para.text.strip()]
             
-            # Extract text from tables
             for table in doc.tables:
                 for row in table.rows:
                     for cell in row.cells:
@@ -25,7 +24,7 @@ class TextExtraction:
                         if cell_text:
                             text.append(cell_text)
             
-            # Extract metadata
+
             properties = doc.core_properties
             metadata = {
                 'title': properties.title or 'Unknown',
@@ -50,7 +49,6 @@ class TextExtraction:
                 pdf_reader = pdf.PdfReader(file)
                 text = [page.extract_text() or '' for page in pdf_reader.pages]
                 
-                # Attempt table extraction using pdfplumber (as PyPDF2 doesn't natively support tables)
                 try:
                     with pdl.open(file_path) as pdf:
                         for page in pdf.pages:
@@ -85,7 +83,7 @@ class TextExtraction:
                     if extracted:
                         text.extend(line.strip() for line in extracted.splitlines() if line.strip())
                     
-                    # Extract text from tables
+                
                     tables = page.extract_tables()
                     for table in tables:
                         for row in table:
@@ -111,7 +109,7 @@ class CleanText:
         if not isinstance(text, str) or not text.strip():
             return ''
         
-        # Comprehensive text cleaning
+      
         text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
         text = re.sub(r'[^\x20-\x7E]', '', text)  # Remove non-printable characters
         text = re.sub(r'[-–—]+', '-', text)  # Normalize dashes
@@ -123,7 +121,6 @@ class CleanText:
         
         try:
             sentences = sent_tokenize(text)
-            # Filter out very short sentences and normalize punctuation
             sentences = [s.strip() for s in sentences if len(word_tokenize(s)) > 4]
             text = ' '.join(s.rstrip('!?.') + '.' for s in sentences if s)
         except Exception as e:
@@ -152,7 +149,7 @@ class SummaryModel:
             words = word_tokenize(sentence.lower())
             word_count = sum(1 for word in words if word.isalnum())
             
-            if word_count < 5:  # Skip very short sentences
+            if word_count < 5: 
                 continue
                 
             score = sum(word_freq.get(word, 0) for word in words if word in word_freq) / (word_count + 1)
@@ -175,11 +172,10 @@ class SummaryModel:
             if not scores:
                 return '', {'error': 'No scorable sentences found'}
                 
-            # Select top sentences
+            
             num_sentences = min(max_sentences, max(min_sentences, math.ceil(len(sentences) * ratio)))
             top_sentences = sorted(scores.items(), key=lambda x: x[1], reverse=True)[:num_sentences]
             
-            # Preserve original order of selected sentences
             summary_sentences = [sentences[i] for i, _ in sorted(top_sentences, key=lambda x: x[0])]
             summary = ' '.join(summary_sentences)
             
@@ -203,7 +199,6 @@ class ProcessorPipeline:
             return {'error': 'Unsupported file type'}
             
         try:
-            # Determine PDF processing method based on file size
             if file_extension == '.pdf':
                 file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
                 if file_size_mb > 10:
