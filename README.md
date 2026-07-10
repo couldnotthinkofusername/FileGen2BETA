@@ -17,12 +17,12 @@
 
 ## 📋 What is FileGen2?
 
-**FileGen2** is a modern, web-based document summarization tool that leverages advanced transformer-based AI models to automatically extract key information from DOCX and PDF documents. Built with **Streamlit**, it provides a beautiful, intuitive interface that requires zero coding knowledge to use.
+**FileGen2** is a simple web based summarization tool that leverages BART Model to automatically extract key information from DOCX and PDF documents upto 10MB. Built with **Streamlit**, it provides a beautiful, intuitive interface that requires zero coding knowledge to use.
 
-Simply upload a document, click summarize, and get a concise summary in seconds. Perfect for researchers, students, professionals, and anyone dealing with large volumes of text.
+Simply upload a document, click summarize and get a concise summary in seconds. Perfect for researchers, students, professionals or anyone dealing with large volumes of text.
 
-### 🎯 Core Mission
-*Make document summarization accessible, fast, and intelligent for everyone.*
+### Core Mission
+*Make document summarization accessible and fast for everyone.*
 
 ---
 
@@ -30,16 +30,16 @@ Simply upload a document, click summarize, and get a concise summary in seconds.
 
 | Feature | Description | Status |
 |---------|-------------|--------|
-| 📄 **DOCX Support** | Extract and summarize Microsoft Word documents with full formatting preservation | ✅ |
-| 📕 **PDF Support** | Advanced PDF text extraction with table and multi-page support | ✅ |
-| 🧠 **AI Summarization** | State-of-the-art transformer models (Facebook BART) for intelligent condensation | ✅ |
-| ⚡ **Lightning Fast** | Summarization in under 1 second (cached model loading) | ✅ |
-| 💾 **Download Results** | Export summaries as clean .txt files for archival or sharing | ✅ |
-| 🎨 **Beautiful UI** | Professional, responsive interface built with Streamlit | ✅ |
-| 🔧 **Smart Caching** | Model loaded once, reused for all subsequent requests | ✅ |
-| 📊 **Error Handling** | Graceful error messages for corrupted files or extraction issues | ✅ |
-| 🌙 **Dark Mode Ready** | Automatic theme detection and responsive design | ✅ |
-| 📱 **Mobile Friendly** | Works seamlessly on tablets and mobile devices | ✅ |
+| **DOCX Support** | Extract and summarize Microsoft Word documents with full formatting preservation.
+| **PDF Support** | Advanced PDF text extraction with table and multi page support.
+| **AI Summarization** | State of the art transformer models (Facebook BART) for intelligent condensation.
+| **Lightning Fast** | Summarization in under 1 second (cached model loading).
+| **Download Results** | Export summaries as clean .txt files for archival or sharing.
+| **Beautiful UI** | Professional, responsive interface built with Streamlit.
+| **Smart Caching** | Model loaded once, reused for all subsequent requests.
+| **Error Handling** | Graceful error messages for corrupted files or extraction issues.
+| **Dark Mode Ready** | Automatic theme detection and responsive design.
+| **Mobile Friendly** | Works seamlessly on tablets and mobile devices.
 
 ---
 
@@ -63,7 +63,7 @@ pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
-✅ **Done!** Open your browser to `http://localhost:8501`
+**Done!** Open your browser to `http://localhost:8501`
 
 > 💡 **First Run Note:** The AI model (~500MB) will download automatically on first run. This is normal and only happens once. Subsequent runs are instant!
 
@@ -74,17 +74,17 @@ streamlit run streamlit_app.py
 ### Step-by-Step
 
 ```
-1️⃣  UPLOAD
+1️ UPLOAD
     └─ Click "Upload File" button
     └─ Select a .docx or .pdf file
     └─ Wait for confirmation
 
-2️⃣  SUMMARIZE
+2️ SUMMARIZE
     └─ Click the "Summarize" button
     └─ Watch the progress spinner
     └─ Results appear instantly
 
-3️⃣  DOWNLOAD
+3️ DOWNLOAD
     └─ Review the summary
     └─ Click "Download Summary"
     └─ File saved as Summary.txt
@@ -115,7 +115,7 @@ Output: Comparative summaries → identify trends and gaps in literature
 
 ---
 
-## 🛠️ Installation
+## Installation
 
 ### Requirements
 - **Python 3.8** or higher
@@ -166,7 +166,7 @@ docker run -p 8501:8501 filegen2
 
 ---
 
-## 📊 How It Works
+## How It Works
 
 ### Technical Pipeline
 
@@ -211,7 +211,7 @@ User Interface
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Adjusting Summarization Parameters
 
@@ -281,7 +281,7 @@ st.markdown('''<style>
 
 ---
 
-## 📈 Performance Metrics
+## Performance Metrics
 
 | Metric | Value | Notes |
 |--------|-------|-------|
@@ -298,7 +298,7 @@ st.markdown('''<style>
 
 ## 🔧 Troubleshooting
 
-### ❌ "No extractable text found in the document"
+### "No extractable text found in the document"
 **Problem:** PDF is image-based (scanned without OCR)
 
 **Solutions:**
@@ -317,7 +317,7 @@ convert -density 300 input.pdf output.txt
 
 ---
 
-### ⏳ "Slow summarization on first run"
+### "Slow summarization on first run"
 **Problem:** Model is downloading (~1.6GB)
 
 **Solution:**
@@ -329,7 +329,7 @@ python -c "from transformers import pipeline; pipeline('summarization')"
 
 ---
 
-### 💾 "Out of Memory" error
+### "Out of Memory" error
 **Problem:** System lacks sufficient RAM
 
 **Solutions:**
@@ -347,7 +347,7 @@ if len(text) > 500:  # Reduce from 1000
 
 ---
 
-### 🔴 "ModuleNotFoundError" 
+### "ModuleNotFoundError" 
 **Problem:** Dependencies not installed
 
 **Solutions:**
@@ -359,12 +359,12 @@ pip install -r requirements.txt --force-reinstall
 pip install streamlit transformers torch pdfplumber python-docx
 
 # Verify installation
-python -c "import streamlit, transformers, torch, pdfplumber, docx; print('✅ All modules installed!')"
+python -c "import streamlit, transformers, torch, pdfplumber, docx; print('All modules installed!')"
 ```
 
 ---
 
-### 📄 "Unsupported file format"
+### "Unsupported file format"
 **Problem:** Uploaded file is not DOCX or PDF
 
 **Solutions:**
@@ -387,7 +387,7 @@ doc.save('file.docx')
 
 ---
 
-### 🔐 "PDF is password protected"
+### "PDF is password protected"
 **Problem:** Encrypted PDF cannot be read
 
 **Solutions:**
@@ -409,7 +409,7 @@ reader = PdfReader('encrypted.pdf', password='YOUR_PASSWORD')
 
 ---
 
-## 📚 Technical Architecture
+## Technical Architecture
 
 ### Project Structure
 
@@ -438,9 +438,9 @@ FileGen2BETA/
 
 ---
 
-## 🎯 Use Case Examples
+## Use Case Examples
 
-### 📚 Academic Research
+### Academic Research
 ```
 Input:  "Deep Learning Architectures for NLP" (60-page PDF)
         ├─ 15,000 words
@@ -453,7 +453,7 @@ Output: Concise summary highlighting:
         └─ Future research directions
 ```
 
-### 💼 Business Intelligence
+### Business Intelligence
 ```
 Input:  Quarterly Business Report
         ├─ Financial statements
@@ -467,7 +467,7 @@ Output: Executive brief for leadership
         └─ Risk assessment
 ```
 
-### 🏥 Medical/Legal
+### Medical/Legal
 ```
 Input:  Medical record or legal document (20+ pages)
 
@@ -484,14 +484,14 @@ Output: Key information summary
 
 We welcome contributions! Here's how to get involved:
 
-### 1️⃣ Fork & Clone
+### Fork & Clone
 ```bash
 git clone https://github.com/YOUR_USERNAME/FileGen2BETA.git
 cd FileGen2BETA
 git checkout -b feature/your-feature-name
 ```
 
-### 2️⃣ Make Changes
+### Make Changes
 ```bash
 # Edit files
 # Test locally: streamlit run streamlit_app.py
@@ -504,7 +504,7 @@ git checkout -b feature/your-feature-name
 # - Optimize performance
 ```
 
-### 3️⃣ Test Thoroughly
+### Test Thoroughly
 ```bash
 # Test with various file types
 - Simple DOCX files
@@ -543,12 +543,11 @@ git push origin feature/your-feature-name
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 ### Version 2.0 (Q2 2024)
 - [ ] Multiple language support (Spanish, French, German, etc.)
 - [ ] Batch processing (summarize 10+ documents at once)
-- [ ] Custom model selection (T5, PEGASUS, etc.)
 - [ ] Export to multiple formats (PDF, DOCX, Markdown)
 - [ ] Dark/Light theme toggle
 - [ ] Document comparison mode
@@ -556,7 +555,7 @@ git push origin feature/your-feature-name
 ### Version 3.0 (Q4 2024)
 - [ ] REST API endpoint for integration
 - [ ] Docker container with cloud deployment
-- [ ] Multi-user authentication
+- [ ] Multi user authentication
 - [ ] Summarization history & saved projects
 - [ ] Advanced analytics (keyword extraction, sentiment)
 - [ ] GPU acceleration support
@@ -565,26 +564,13 @@ git push origin feature/your-feature-name
 - [ ] Browser extension for web articles
 - [ ] Mobile app (iOS/Android)
 - [ ] Integration with Google Drive, OneDrive
-- [ ] Real-time collaboration
-- [ ] AI-powered Q&A on documents
+- [ ] Real time collaboration
+- [ ] AI powered Q&A on documents
 
 ---
 
-## 📊 Comparison with Alternatives
 
-| Feature | FileGen2 | ChatGPT | Adobe | Microsoft Copilot |
-|---------|----------|---------|-------|------------------|
-| **Cost** | Free | $20/month | $10+ PDF | Included |
-| **Privacy** | Local processing | Cloud | Cloud | Cloud |
-| **Speed** | <1 sec | 5-10 sec | Variable | Variable |
-| **Customization** | High | Low | Low | Low |
-| **Batch Processing** | ⏳ Planned | Limited | Limited | Limited |
-| **API Access** | ✅ Planned | ✅ | ❌ | ❌ |
-| **Offline Mode** | ✅ | ❌ | ❌ | ❌ |
-
----
-
-## 📝 License
+## License
 
 MIT License - Free for personal and commercial use
 
@@ -642,7 +628,7 @@ License:        MIT
 
 ---
 
-Made with ❤️ by [@couldnotthinkofusername](https://github.com/couldnotthinkofusername)
+Made by [@couldnotthinkofusername](https://github.com/couldnotthinkofusername)
 
 <sub>Last updated: January 2024 | Version 1.0.0-beta</sub>
 
